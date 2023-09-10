@@ -1,11 +1,14 @@
 FROM python:3.10-alpine
-RUN adduser 1001 && RUN mkdir /opt/src && chown -R 1001 /opt/src
 RUN pip3 install fastapi uvicorn 
 
-USER 1001 
-COPY src/ /opt/src
+RUN addgroup -S fastapi && \
+    adduser -S fastapi -G fastapi && \
+     mkdir -p /opt/src && \
+     chown -R fastapi:fastapi /opt/src
 
-EXPOSE 8000
+USER fastapi 
+COPY src/ /opt/src
 WORKDIR /opt/src
 
-CMD ["python3", "-m uvicorn", "--root-path /opt/source", "--host 0.0.0.0", "--port 8000"]
+EXPOSE 8000
+CMD ["/usr/local/bin/uvicorn", "--host", "0.0.0.0","main:myapi"]
