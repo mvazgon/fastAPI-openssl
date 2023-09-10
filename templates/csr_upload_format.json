@@ -1,0 +1,24 @@
+{
+    "req": {
+        "distinguished_name" : "req_distinguished_name",
+        "req_extensions" : "v3_req",
+        "prompt" : "no"
+    },
+    "req_distinguished_name": {
+        "C": "your_country",
+        "ST": "your_state",
+        "L": "your_city",
+        "O": "your_company_name",
+        "OU": "IT Dept.",
+        "CN": "yourdomainname.com"
+    },
+    "v3_req": {
+        "keyUsage": "keyEncipherment, dataEncipherment",
+        "extendedKeyUsage": "serverAuth"
+    },
+    "subjectAltName": "@alt_names",
+    "alt_names": {
+        "DNS.1": "www.yourdomainname.com",
+        "DNS.2": "myapp.yourdomainname.com"
+    }
+}
