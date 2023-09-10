@@ -1,5 +1,5 @@
 FROM python:3.10-alpine
-RUN adduser 1001 && RUN mkdir /opt/src && chown -r /opt/src
+RUN adduser 1001 && RUN mkdir /opt/src && chown -R 1001 /opt/src
 RUN pip3 install fastapi uvicorn 
 
 USER 1001 
