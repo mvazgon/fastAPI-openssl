@@ -43,6 +43,7 @@ def createNewCSR(
     subjectAltName: str=None,
     privateKey: str="Here your Private Key(mandatory)"):
  
+    #Preparp la información para crear el CSR.
     req = crypto.X509Req()
     req.get_subject().CN = commonName
     if countryName:
@@ -62,29 +63,22 @@ def createNewCSR(
             extensions = [crypto.X509Extension(b"subjectAltName", False, ", ".join(subjectAltName).encode())]
             req.add_extensions(extensions)
         except Exception as e:
-            return {"message": "error añadiendoe subjectAltName: " + e.__str__()}
-    temporalkey="data/tmp/"+str(int(time.time()))+".tmp"
-    pk=type(privateKey)
-
-    return {"message": pk}
-
-    """
-    with open(temporalkey,"w") as file:
-        file.write(privateKey.encode('utf-8'))
-    with open(temporalkey, "rb") as key_file:
-        key_data = key_file.read()
+            return {"message": "error añadiendoe subjectAltName: " + e.__str__()}    
     
-    pkey=crypto.load_privatekey(crypto.FILETYPE_PEM,key_data)
-    req.set_pubkey(pkey)
-    #req.sign(private_key, 'sha256')
-    #except Exception as e:
-     #   return {"message": "error estableciendo la llave privada: " + e.__str__()}
-    #try:
-    #    csr = crypto.dump_certificate_request(crypto.FILETYPE_PEM, req)
-    #    return {"message":csr.__str__()}
-    #except Exception as e:
-    #    return {"message": "error creando el csr: " + e.__str__()}
-    """
+    # Aqui recupero el certificado y preparo la creación del CSR
+    try:
+        pkey=crypto.load_privatekey(crypto.FILETYPE_PEM,privateKey)
+        req.set_pubkey(pkey)
+        req.sign(pkey, 'sha256')
+    except Exception as e:
+        return {"message": "error estableciendo la llave privada: " + e.__str__()}
+    #Aqui intento dumpear el CSR para recuperarlo
+    try:
+        csr = crypto.dump_certificate_request(crypto.FILETYPE_PEM, req)
+        return {"message":csr.__str__()}
+    except Exception as e:
+        return {"message": "error creando el csr: " + e.__str__()}
+    
 @manageCertificates.get("/{id}")
 def getCertificateByValue(id):
     mSsl=manageSSL()
