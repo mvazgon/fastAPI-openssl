@@ -1,0 +1,16 @@
+[req]
+prompt=no
+distinguished_name=dn
+req_extensions=ext
+
+[dn]
+CN=example.com
+emailAddress=aqui@tu.email
+O = Company SL
+OU = IT Services
+L  = Tu Ciudad
+ST = Tu Estado|Autonomia|Condado
+C = Tu Pais
+
+[ext]
+subjectAltName=DNS:subdominio1.example.com,DNS:subdominio2.example.com
