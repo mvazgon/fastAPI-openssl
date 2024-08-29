@@ -17,12 +17,13 @@ def createNewKey(len: int,cn: str):
         #Construimos el certificado
         pKey=crypto.PKey()
         pKey.generate_key(crypto.TYPE_RSA,len)
-        cert.privatekey=crypto.dump_privatekey(crypto.FILETYPE_PEM,pKey).decode('utf-8')        #privateKey=cert.privatekey
+        cert.privatekey=crypto.dump_privatekey(crypto.FILETYPE_PEM,pKey).decode('utf-8')
+        print(cert.privatekey)
         #Constuimos el certificado
         namefile="./data/cert"+cert.id.__str__()+"-"+cert.cn.__str__()+"-key.json"
-        with open(namefile,"w") as file:
-            json.dump(dict(cert),file)
-        return {"message":"Creado privateKey con :" + str(cert)}
+        with open(namefile,"w",encoding='utf-8') as file:
+            json.dump(cert.privatekey,file)
+        return {"message":"Creado privateKey con :" + str(cert.privatekey)}
     except Exception as e:
         return {"message": e.__str__()}
 
