@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from models.Certificates import Certs
-from lib.utils import fSearch, manageSSL
+#from lib.utils import fSearch, manageSSL
 from OpenSSL import crypto
 import urllib.parse
 import json,time,os

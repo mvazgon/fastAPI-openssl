@@ -1,0 +1,7 @@
+version: "3"
+services:
+  fastapi-openssl:
+    image: fastapiopenssl:latest
+    container_name: api-openssl
+    ports: 
+      - "8081:8000"
