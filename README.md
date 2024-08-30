@@ -17,7 +17,8 @@ Dentro del repositorio encontrarás dos archivos:
 - Dockerfile
 - docker-compose.yaml
 El proceso lo dividiremos en dos estapas:
-- Con la primera creamos la imagen base que se reusará en la segunda. Para ello debemos de ejecutar el comando:
+- Con la primera creamos la imagen base que se reusará en la segunda.
+-  Para ello debemos de ejecutar el comando:
 
    `docker build ./ -t fastapiopenssl:lastest`
 
