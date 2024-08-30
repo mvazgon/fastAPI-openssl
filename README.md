@@ -19,11 +19,11 @@ Dentro del repositorio encontrarás dos archivos:
 El proceso lo dividiremos en dos estapas:
 - Con la primera creamos la imagen base que se reusará en la segunda. Para ello debemos de ejecutar el comando:
 
-   docker build ./ -t fastapiopenssl:lastest
+   '''docker build ./ -t fastapiopenssl:lastest'''
 
 Una vez construida la imagen, con todas las dependencias del proyecto, para ejeucutar el servicio solo tenemos que ejecutar el comando:
 
-   docker-compose up 
+   '''docker-compose up''' 
 
 Para comprobar el acceso se puede hacer con el comando:
 
@@ -32,4 +32,3 @@ Para comprobar el acceso se puede hacer con el comando:
 ### Descripción de los endpoints.
 Vamos a gestionar varios endpoints que corresponderan a:
 - Operaciones de generación de certificados:
- 
